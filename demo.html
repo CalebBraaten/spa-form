@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback | spa-form Demo</title>
+    <style>
+    	body {
+            font-family: 'Open Sans', arial, sans-serif!important;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0096dc+0,2989d8+13,a641a1+100 */
+            background: #0096dc;
+			}
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			margin-top: 50px;
+			margin-bottom: 70px;
+			border-radius: 25px;
+			background-color: white;
+			padding: 65px;
+		}
+		input[type=submit], button{
+			font-family: 'Open Sans', arial, sans-serif!important;
+			background-image: none;
+			background-color: #0096dc;
+			background-size: 100% 200%;
+			text-shadow: none;
+			border: 0;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			color: #ffffff!important;
+			cursor: pointer;
+			padding: 8px 15px 8px;
+			-webkit-transition: background .2s ease-out;
+			-moz-transition: background .2s ease-out;
+			-ie-transition: background .2s ease-out;
+			-o-transition: background .2s ease-out;
+			transition: background .2s ease-out;
+			width: 50%;
+			font-size: 1em;
+		}
+		input[type=submit]:hover, button:hover {
+			background-color: #a641a1;
+		}
+		input, textarea {
+			width: 100%;
+			margin-bottom: 25px;
+			line-height: 30px;
+			margin-top: 5px;
+		}
+		
+		label {
+			width: 100%;
+			font-weight: bold;
+		}
+		
+		label text {
+			display: inline-block;
+			text-align: right;
+		}
+		.modal {
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: auto;
+			top: 150px;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			text-align: center;
+			max-width: 300px;
+			border-radius: 25px;
+			background-color: rgb(220, 233, 253);
+			padding: 50px;
+			opacity: 0;
+			z-index: 1;
+			padding-left: 25px;
+			padding-right: 25px;
+			visibility: hidden;
+			transition: visibility 0s lineaer 0.1s, opacity 0.3s ease;
+		}
+		.modal.open {
+			background-color: aliceblue;
+			position: absolute;
+			visibility: visible;
+			opacity: 1;
+			transition-delay: 0s;
+		}
+		.modal button{
+			flex-direction: row-reverse;
+		}
+    </style>
+</head>
+<body>
+	<form is='spa-form' data-callback="myCallbackFunction" id='myForm' retainOnSubmit
+          action="https://api.cbraaten.dev/returnQueryAsJSON" >
+        
+        <label for="userName"><b>Name: </b></label>
+		<input type="text" placeholder="Name" name="userName" autocomplete="yes" required>
+		
+        <label for="email"><b>Email: </b></label>
+		<input type="email" placeholder="Enter Email" name="email" autocomplete="yes" required> 
+		
+        <label for="message"><b>Feedback</b></label>  
+		<textarea form="myForm" placeholder="Your Feedback..." name="message" required></textarea>
+		
+        <input type="submit">
+    </form>
+    <div id="modal" class="modal"></div>
+  </body>
+
+  <script src="./spa-form.js"></script>
+
+  <script>
+    function myCallbackFunction(formData){
+      const modal = document.getElementById("modal");
+      modal.innerHTML = `
+        <p>Thank you <b>${formData.userName}</b> for submitting the following feedback: </p>
+        <p><em>${formData.message}</em></p>
+        <p>We will followup with you at the email address <b>${formData.email}</b></p>
+        <button onclick="hideModal()">Exit</button>
+        `;
+
+      modal.className += " open";
+    }
+
+    function hideModal(){
+      const modal = document.getElementById("modal");
+      modal.className = "modal";
+    }
+  </script>
+</html>

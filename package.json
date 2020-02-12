@@ -1,0 +1,27 @@
+{
+  "name": "spa-form",
+  "version": "1.0.0",
+  "description": "A Utility web component to send form data to a callback function instead of HTTP endpoint",
+  "main": "spa-form.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebBraaten/spa-form.git"
+  },
+  "keywords": [
+    "WebComponents",
+    "FunctionalWebComponent",
+    "VanillaJS",
+    "NoFramework",
+    "SPA",
+    "Components"
+  ],
+  "author": "Caleb Braaten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CalebBraaten/spa-form/issues"
+  },
+  "homepage": "https://github.com/CalebBraaten/spa-form#readme"
+}
